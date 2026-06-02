@@ -1,4 +1,4 @@
-"""Configuration management â€” loads env vars and YAML configs."""
+"""Configuration management ???????? loads env vars and YAML configs."""
 
 import os
 import yaml
@@ -25,7 +25,7 @@ class Config:
     dry_run: bool = False
     notify_email: bool = True
     notify_telegram: bool = True
-    recipient_email: str = "keyegon@gmail.com"
+    recipient_email: str = "erickkiprotichyegon61@gmail.com"
 
     # Claude model
     claude_model: str = "claude-haiku-4-5-20251001"
@@ -78,3 +78,4 @@ def load_trusted_domains() -> dict:
     for key in ("ats_domains", "job_board_domains", "company_domains"):
         all_domains.update(data.get(key, []))
     return {"all": all_domains, **data}
+

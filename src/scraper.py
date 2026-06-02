@@ -20,17 +20,26 @@ CORE_QUERIES = [
     "AI ML engineer",
     "LLM engineer",
     "AI solutions architect",
-    "machine learning engineer",
-    "AI product manager",
+    "machine learning engineer senior",
     "MLOps engineer",
-    "AI developer advocate",
+    "data scientist senior",
+    "research scientist AI",
+    "biostatistician",
+    "epidemiologist data scientist",
+    "epidemiologist",
+    "health data scientist",
+    "AI product manager",
+    "developer advocate AI",
+    "NLP engineer",
+    "AI architect",
+"Research Scientist"
 ]
 
 
 def scrape_aggregators(hours_back: int = 24) -> list[Job]:
     config = load_search_queries()
     queries = CORE_QUERIES
-    locations = config.get("locations", ["Remote"])
+    locations = ["United States"]
     max_results = config.get("max_results_per_query", 25)
     all_jobs: list[Job] = []
     seen_urls: set[str] = set()
@@ -45,7 +54,7 @@ def scrape_aggregators(hours_back: int = 24) -> list[Job]:
                     results_wanted=max_results,
                     hours_old=hours_back,
                     country_indeed="USA",
-                    linkedin_fetch_description=False,
+                    linkedin_fetch_description=True,
                     is_remote=True,
                 )
                 if df is not None and not df.empty:
@@ -54,7 +63,7 @@ def scrape_aggregators(hours_back: int = 24) -> list[Job]:
                     logger.info(f"  Found {len(jobs)} new jobs")
                 else:
                     logger.info("  Found 0 new jobs")
-                time.sleep(1)
+                time.sleep(2)
             except Exception as e:
                 logger.warning(f"JobSpy error for '{query}' in '{location}': {e}")
                 continue
