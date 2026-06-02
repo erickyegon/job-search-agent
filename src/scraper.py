@@ -86,7 +86,7 @@ def _df_to_jobs(df: pd.DataFrame, seen_urls: set[str]) -> list[Job]:
                 pass
         job = Job(
             title=str(row.get("title", "")).strip(),
-            company=str(row.get("company_name", "")).strip(),
+            company=str(row.get("company", "")).strip(),
             location=_normalize_location(row),
             url=url,
             source=str(row.get("site", "unknown")),
