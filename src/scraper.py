@@ -1,4 +1,4 @@
-﻿"""Multi-source job scraper using JobSpy + custom scrapers."""
+"""Multi-source job scraper using JobSpy + custom scrapers."""
 
 import logging
 import time

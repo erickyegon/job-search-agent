@@ -1,4 +1,4 @@
-﻿"""Pipeline orchestrator."""
+"""Pipeline orchestrator."""
 
 import asyncio
 import logging
