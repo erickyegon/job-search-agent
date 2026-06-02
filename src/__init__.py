@@ -1,1 +1,1 @@
-"""Job Search Agent — Automated job discovery, AI scoring, and delivery."""
+"""Job Search Agent â€” Automated job discovery, AI scoring, and delivery."""

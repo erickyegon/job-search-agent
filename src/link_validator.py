@@ -152,7 +152,7 @@ async def _check_http(client: httpx.AsyncClient, job: Job, semaphore: asyncio.Se
             elif resp.status_code in (403, 429):
                 # Might be rate-limited or bot-blocked; still could be real
                 job.link_status = LinkStatus.VERIFIED
-                logger.debug(f"Got {resp.status_code} for {job.url} — keeping as may be bot protection")
+                logger.debug(f"Got {resp.status_code} for {job.url} â€” keeping as may be bot protection")
             elif resp.status_code == 404:
                 job.link_status = LinkStatus.DEAD
             else:
@@ -186,7 +186,7 @@ async def _deep_verify(client: httpx.AsyncClient, job: Job) -> Job:
         for keyword in DEAD_PAGE_KEYWORDS:
             if keyword in text:
                 job.link_status = LinkStatus.DEAD
-                logger.info(f"Dead listing detected: {job.title} @ {job.company} — '{keyword}' found")
+                logger.info(f"Dead listing detected: {job.title} @ {job.company} â€” '{keyword}' found")
                 return job
 
         # Check for job page indicators

@@ -94,7 +94,7 @@ def _build_summary(apply_jobs: list[dict], maybe_jobs: list[dict]) -> str:
 
 def _build_job_message(job: dict, is_apply: bool = True) -> tuple[str, Optional[InlineKeyboardMarkup]]:
     """Build a detailed message for an APPLY job."""
-    emoji = "🟢" if is_apply else "🟡"
+    emoji = "ðŸŸ¢" if is_apply else "ðŸŸ¡"
     rec = job.get("recommendation", "SKIP")
     score = job.get("score", 0)
     url = job.get("url", "")
@@ -108,22 +108,22 @@ def _build_job_message(job: dict, is_apply: bool = True) -> tuple[str, Optional[
         except Exception:
             key_matches = []
 
-    matches_str = ", ".join(key_matches[:5]) if key_matches else "—"
-    salary_line = f"\n💰 {salary}" if salary else ""
+    matches_str = ", ".join(key_matches[:5]) if key_matches else "â€”"
+    salary_line = f"\nðŸ’° {salary}" if salary else ""
 
     msg = (
         f"{emoji} <b>{_escape(job.get('title', 'Unknown'))}</b>\n"
-        f"🏢 {_escape(job.get('company', 'Unknown'))}\n"
-        f"📍 {_escape(job.get('location', 'Unknown'))}\n"
-        f"🎯 Score: <b>{score}/100</b> | {rec}{salary_line}\n"
-        f"📋 Source: {job.get('source', 'unknown')}\n\n"
+        f"ðŸ¢ {_escape(job.get('company', 'Unknown'))}\n"
+        f"ðŸ“ {_escape(job.get('location', 'Unknown'))}\n"
+        f"ðŸŽ¯ Score: <b>{score}/100</b> | {rec}{salary_line}\n"
+        f"ðŸ“‹ Source: {job.get('source', 'unknown')}\n\n"
         f"<i>{_escape(job.get('reasoning', ''))}</i>\n\n"
-        f"🔑 Matches: {_escape(matches_str)}\n"
-        f"🔗 <code>{domain}</code>"
+        f"ðŸ”‘ Matches: {_escape(matches_str)}\n"
+        f"ðŸ”— <code>{domain}</code>"
     )
 
     keyboard = InlineKeyboardMarkup([
-        [InlineKeyboardButton(f"Apply Now → {domain}", url=url)]
+        [InlineKeyboardButton(f"Apply Now â†’ {domain}", url=url)]
     ]) if url else None
 
     return msg, keyboard
@@ -131,14 +131,14 @@ def _build_job_message(job: dict, is_apply: bool = True) -> tuple[str, Optional[
 
 def _build_maybe_batch(jobs: list[dict]) -> str:
     """Build a compact message for a batch of MAYBE jobs."""
-    lines = ["🟡 <b>Worth Considering</b>\n"]
+    lines = ["ðŸŸ¡ <b>Worth Considering</b>\n"]
     for job in jobs:
         url = job.get("url", "")
         domain = job.get("url_domain", "")
         score = job.get("score", 0)
         lines.append(
-            f"• <a href=\"{url}\">{_escape(job.get('title', 'Unknown'))}</a> @ {_escape(job.get('company', 'Unknown'))}\n"
-            f"  📍 {_escape(job.get('location', 'Unknown'))} | 🎯 {score}/100\n"
+            f"â€¢ <a href=\"{url}\">{_escape(job.get('title', 'Unknown'))}</a> @ {_escape(job.get('company', 'Unknown'))}\n"
+            f"  ðŸ“ {_escape(job.get('location', 'Unknown'))} | ðŸŽ¯ {score}/100\n"
             f"  <i>{_escape(job.get('reasoning', '')[:100])}</i>\n"
         )
     return "\n".join(lines)

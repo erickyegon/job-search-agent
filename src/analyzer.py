@@ -1,4 +1,4 @@
-"""Claude Haiku job analyzer — scores jobs against your profile."""
+"""Claude Haiku job analyzer â€” scores jobs against your profile."""
 
 import logging
 import json
@@ -62,10 +62,10 @@ DESCRIPTION: We're looking for a Senior GenAI Engineer to build production agent
         "content": json.dumps({
             "score": 97,
             "recommendation": "APPLY",
-            "reasoning": "Near-perfect match. Requires LangChain, MCP, agentic AI, RAG, and Claude expertise — all candidate's expert skills. Senior level fits 17+ years. Anthropic is priority company #1. Remote compatible. Freshness bonus: +5 (posted 2h ago).",
+            "reasoning": "Near-perfect match. Requires LangChain, MCP, agentic AI, RAG, and Claude expertise â€” all candidate's expert skills. Senior level fits 17+ years. Anthropic is priority company #1. Remote compatible. Freshness bonus: +5 (posted 2h ago).",
             "key_matches": ["LangChain", "MCP", "Agentic AI", "RAG", "Python", "FastAPI", "LLM fine-tuning", "Claude SDK"],
             "gaps": [],
-            "salary_estimate": "$250,000–$350,000 TC",
+            "salary_estimate": "$250,000â€“$350,000 TC",
             "is_suspicious": False,
             "suspicious_reason": None
         })
@@ -180,7 +180,7 @@ DESCRIPTION: {job.description[:2000]}"""
         # Mark suspicious jobs as SKIP regardless of score
         if job.is_suspicious:
             job.recommendation = Recommendation.SKIP
-            logger.info(f"Suspicious job flagged: {job.title} @ {job.company} — {data.get('suspicious_reason', 'unknown')}")
+            logger.info(f"Suspicious job flagged: {job.title} @ {job.company} â€” {data.get('suspicious_reason', 'unknown')}")
 
         logger.info(f"  {job.recommendation.value} ({job.score}): {job.title} @ {job.company}")
         return job

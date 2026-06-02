@@ -300,7 +300,7 @@ async def _scrape_nvidia_careers(client: httpx.AsyncClient) -> list[Job]:
 def _is_ai_role(title: str, department: str) -> bool:
     """Check if a job title/department is AI-relevant."""
     combined = f"{title} {department}".lower()
-    # Broader match for career pages — we already filtered to the right companies
+    # Broader match for career pages â€” we already filtered to the right companies
     return any(kw in combined for kw in AI_KEYWORDS) or any(
         term in combined for term in [
             "engineer", "architect", "scientist", "developer",

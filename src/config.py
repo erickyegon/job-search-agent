@@ -1,4 +1,4 @@
-"""Configuration management — loads env vars and YAML configs."""
+"""Configuration management â€” loads env vars and YAML configs."""
 
 import os
 import yaml
