@@ -1,0 +1,3 @@
+2026-06-02 16:58:22 [ERROR] __main__: Config error: ANTHROPIC_API_KEY is required
+2026-06-02 16:58:22 [ERROR] __main__: Config error: TELEGRAM_BOT_TOKEN is required for Telegram notifications
+2026-06-02 16:58:22 [ERROR] __main__: Config error: TELEGRAM_CHAT_ID is required for Telegram notifications
