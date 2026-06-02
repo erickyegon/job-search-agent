@@ -55,7 +55,7 @@ def scrape_aggregators(hours_back: int = 24) -> list[Job]:
                     hours_old=hours_back,
                     country_indeed="USA",
                     linkedin_fetch_description=True,
-                    is_remote=True,
+                    #is_remote=True,
                 )
                 if df is not None and not df.empty:
                     jobs = _df_to_jobs(df, seen_urls)

@@ -39,7 +39,7 @@ class Config:
             telegram_chat_id=os.environ.get("TELEGRAM_CHAT_ID", ""),
             db_path=os.environ.get("DB_PATH", "jobs.db"),
             dry_run=os.environ.get("DRY_RUN", "false").lower() == "true",
-            recipient_email=os.environ.get("RECIPIENT_EMAIL", "keyegon@gmail.com"),
+            recipient_email=os.environ.get("RECIPIENT_EMAIL", "erickkiprotichyegon61@gmail.com"),
         )
 
     def validate(self) -> list[str]:
