@@ -1,0 +1,133 @@
+personal:
+  name: "Erick Kiprotich Yegon"
+  email: "keyegon@gmail.com"
+  location: "Richmond, KY"
+  years_experience: 17
+  education:
+    - "PhD Epidemiology — JKUAT"
+    - "MSc Health Systems Management — Kenya Methodist University"
+    - "BSc Statistics — University of Nairobi"
+  work_authorization: "U.S. Permanent Resident (EB-1A) — No Sponsorship Required"
+
+target_roles:
+  - "Senior GenAI Engineer"
+  - "Staff GenAI Engineer"
+  - "Senior AI/ML Engineer"
+  - "Staff AI/ML Engineer"
+  - "AI Solutions Architect"
+  - "Senior Solutions Architect"
+  - "AI Product Manager"
+  - "Developer Relations Engineer"
+  - "AI Developer Advocate"
+  - "Research Scientist (AI)"
+  - "LLM Engineer"
+  - "RAG Engineer"
+  - "MLOps Engineer"
+  - "LLMOps Engineer"
+
+skills:
+  expert:
+    - "LangChain"
+    - "LangGraph"
+    - "CrewAI"
+    - "AutoGen"
+    - "MCP (Model Context Protocol)"
+    - "Prompt Engineering"
+    - "Advanced RAG"
+    - "Query Rewriting & Reranking"
+    - "Multimodal RAG"
+    - "LLM Fine-Tuning"
+    - "Claude API & SDK"
+    - "Agentic AI Orchestration"
+    - "Multi-Agent Systems"
+    - "Python"
+    - "FastAPI"
+    - "SHAP Explainability"
+    - "Causal Inference"
+    - "Epidemiological Methods"
+    - "RAGAS Evaluation"
+    - "Streamlit"
+    - "FAISS"
+    - "Qdrant"
+
+  proficient:
+    - "AWS SageMaker"
+    - "AWS Lambda"
+    - "AWS EKS"
+    - "AWS Redshift"
+    - "Azure"
+    - "Docker"
+    - "Kubernetes"
+    - "Terraform"
+    - "GitHub Actions CI/CD"
+    - "MLflow"
+    - "DVC"
+    - "PyTorch"
+    - "TensorFlow"
+    - "XGBoost"
+    - "scikit-learn"
+    - "R"
+    - "SQL"
+    - "Power BI"
+    - "Tableau"
+    - "Flask"
+    - "Gradio"
+    - "ChromaDB"
+    - "Pinecone"
+    - "DataStax Astra DB"
+
+  domain_expertise:
+    - "Healthcare AI"
+    - "Reproductive Health"
+    - "Population Health"
+    - "Epidemiology"
+    - "FDA Drug-Label Intelligence"
+    - "MLOps"
+    - "LLMOps"
+    - "Statistical Modeling"
+    - "Bias Detection"
+    - "Research Leadership"
+
+preferences:
+  remote: true
+  hybrid_ok: true
+  onsite_ok: false
+  min_score_apply: 80
+  min_score_maybe: 60
+  max_job_age_days: 14
+  freshness_bonus_24h: 5
+  freshness_bonus_48h: 3
+
+  priority_companies:
+    - "Anthropic"
+    - "OpenAI"
+    - "Google DeepMind"
+    - "Cohere"
+    - "Mistral"
+    - "Meta AI"
+    - "Microsoft"
+    - "AWS"
+    - "Nvidia"
+    - "Hugging Face"
+    - "Apple"
+    - "Databricks"
+    - "Perficient"
+    - "Booz Allen Hamilton"
+    - "Deloitte"
+    - "McKinsey QuantumBlack"
+
+  priority_sectors:
+    - "AI research labs"
+    - "Health-tech"
+    - "Enterprise AI consulting"
+    - "Government / USAID contractors"
+    - "Pharma AI"
+    - "MLOps platforms"
+
+  exclude_companies: []
+
+  exclude_keywords:
+    - "internship"
+    - "junior"
+    - "entry level"
+    - "unpaid"

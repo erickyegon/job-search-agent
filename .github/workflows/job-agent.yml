@@ -1,0 +1,104 @@
+name: Job Search Agent
+
+on:
+  schedule:
+    # Run 6x/day (every 4 hours) — times in UTC
+    # EAT = UTC+3, so 2AM EAT = 23:00 UTC (prev day)
+    - cron: '0 23 * * *'   # Run 1: 2:00 AM EAT (silent scrape)
+    - cron: '0 3 * * *'    # Run 2: 6:00 AM EAT (email + telegram)
+    - cron: '0 7 * * *'    # Run 3: 10:00 AM EAT (silent scrape)
+    - cron: '0 11 * * *'   # Run 4: 2:00 PM EAT (telegram only)
+    - cron: '0 15 * * *'   # Run 5: 6:00 PM EAT (silent scrape)
+    - cron: '0 19 * * *'   # Run 6: 10:00 PM EAT (silent scrape)
+
+  workflow_dispatch:
+    inputs:
+      notify_email:
+        description: 'Send email digest'
+        type: boolean
+        default: true
+      notify_telegram:
+        description: 'Send Telegram alerts'
+        type: boolean
+        default: true
+      hours_back:
+        description: 'Hours to look back for jobs'
+        type: number
+        default: 24
+
+jobs:
+  scrape-and-notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Download job database (if exists)
+        uses: actions/cache@v4
+        with:
+          path: jobs.db
+          key: jobs-db-${{ github.run_number }}
+          restore-keys: |
+            jobs-db-
+
+      - name: Determine notification flags
+        id: flags
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "email=${{ github.event.inputs.notify_email }}" >> $GITHUB_OUTPUT
+            echo "telegram=${{ github.event.inputs.notify_telegram }}" >> $GITHUB_OUTPUT
+            echo "hours=${{ github.event.inputs.hours_back }}" >> $GITHUB_OUTPUT
+          else
+            # Determine based on cron schedule (UTC hour)
+            HOUR=$(date -u +%H)
+            case $HOUR in
+              03) # 6AM EAT — full notification
+                echo "email=true" >> $GITHUB_OUTPUT
+                echo "telegram=true" >> $GITHUB_OUTPUT
+                ;;
+              11) # 2PM EAT — telegram only
+                echo "email=false" >> $GITHUB_OUTPUT
+                echo "telegram=true" >> $GITHUB_OUTPUT
+                ;;
+              *) # Silent scrape runs
+                echo "email=false" >> $GITHUB_OUTPUT
+                echo "telegram=false" >> $GITHUB_OUTPUT
+                ;;
+            esac
+            echo "hours=24" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run Job Search Agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DB_PATH: jobs.db
+        run: |
+          FLAGS=""
+          if [ "${{ steps.flags.outputs.email }}" = "true" ]; then
+            FLAGS="$FLAGS --email"
+          fi
+          if [ "${{ steps.flags.outputs.telegram }}" = "true" ]; then
+            FLAGS="$FLAGS --telegram"
+          fi
+          python -m src.main $FLAGS --hours ${{ steps.flags.outputs.hours }}
+
+      - name: Upload job database
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: jobs.db
+          key: jobs-db-${{ github.run_number }}

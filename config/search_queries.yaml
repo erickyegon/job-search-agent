@@ -1,0 +1,30 @@
+# Search queries used by JobSpy and custom scrapers
+# Each query is run against applicable sources
+
+queries:
+  - "senior GenAI engineer remote"
+  - "staff GenAI engineer"
+  - "senior AI ML engineer remote"
+  - "LLM engineer remote"
+  - "RAG engineer"
+  - "AI solutions architect remote"
+  - "agentic AI engineer"
+  - "LangChain engineer"
+  - "AI product manager remote"
+  - "developer relations AI"
+  - "AI developer advocate"
+  - "MLOps engineer senior remote"
+  - "LLMOps engineer"
+  - "machine learning engineer senior remote"
+  - "AI research scientist"
+  - "health AI engineer"
+  - "Claude engineer"
+  - "prompt engineer senior"
+
+# Location filters for aggregator searches
+locations:
+  - "Remote"
+  - "United States"
+
+# Max results per query per source (to stay within rate limits)
+max_results_per_query: 25
