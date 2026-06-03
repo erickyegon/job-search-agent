@@ -62,3 +62,20 @@ company_domains:
   - "boozallen.com"
   - "deloitte.com"
   - "mckinsey.com"
+
+# Health / Research organization domains
+health_org_domains:
+  - "cdcfoundation.org"
+  - "jobs.cdc.gov"
+  - "usajobs.gov"
+  - "nih.gov"
+  - "who.int"
+  - "tempus.com"
+  - "flatironhealth.com"
+  - "verily.com"
+  - "optum.com"
+  - "unitedhealth.com"
+  - "pfizer.com"
+  - "roche.com"
+  - "novartis.com"
+  - "gatesfoundation.org"

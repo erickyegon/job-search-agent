@@ -2,24 +2,37 @@
 # Each query is run against applicable sources
 
 queries:
+  # --- AI / ML Engineering ---
   - "senior GenAI engineer remote"
   - "staff GenAI engineer"
   - "senior AI ML engineer remote"
   - "LLM engineer remote"
-  - "RAG engineer"
   - "AI solutions architect remote"
   - "agentic AI engineer"
-  - "LangChain engineer"
+  - "MLOps engineer senior remote"
+  - "NLP engineer senior"
+  - "AI architect"
+  - "prompt engineer senior"
+
+  # --- Research Scientist / Statistician / Epidemiologist ---
+  - "senior biostatistician remote"
+  - "principal biostatistician"
+  - "senior statistician remote"
+  - "principal statistician"
+  - "senior epidemiologist remote"
+  - "epidemiologist data scientist"
+  - "research scientist AI"
+  - "research scientist health"
+  - "research scientist statistics"
+  - "statistical programmer senior"
+  - "senior data scientist healthcare"
+  - "health data scientist"
+  - "population health data scientist"
+  - "senior data scientist epidemiology"
+
+  # --- Product / DevRel ---
   - "AI product manager remote"
   - "developer relations AI"
-  - "AI developer advocate"
-  - "MLOps engineer senior remote"
-  - "LLMOps engineer"
-  - "machine learning engineer senior remote"
-  - "AI research scientist"
-  - "health AI engineer"
-  - "Claude engineer"
-  - "prompt engineer senior"
 
 # Location filters for aggregator searches
 locations:

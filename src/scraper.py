@@ -16,23 +16,35 @@ logger = logging.getLogger(__name__)
 JOBSPY_SITES = ["indeed", "linkedin", "google"]
 
 CORE_QUERIES = [
+    # AI / ML Engineering
     "generative AI engineer",
     "AI ML engineer",
     "LLM engineer",
     "AI solutions architect",
     "machine learning engineer senior",
     "MLOps engineer",
-    "data scientist senior",
-    "research scientist AI",
-    "biostatistician",
-    "epidemiologist data scientist",
-    "epidemiologist",
-    "health data scientist",
-    "AI product manager",
-    "developer advocate AI",
     "NLP engineer",
     "AI architect",
-"Research Scientist"
+    "AI product manager",
+    "developer advocate AI",
+    # Research Scientist / Statistician / Epidemiologist
+    "senior biostatistician",
+    "principal biostatistician",
+    "senior statistician",
+    "principal statistician",
+    "senior epidemiologist",
+    "epidemiologist data scientist",
+    "research scientist AI",
+    "research scientist health",
+    "research scientist statistics",
+    "statistical programmer senior",
+    "data scientist healthcare",
+    "health data scientist",
+    "population health data scientist",
+    "biostatistician",
+    "epidemiologist",
+    "Research Scientist",
+    "data scientist senior",
 ]
 
 
@@ -55,7 +67,6 @@ def scrape_aggregators(hours_back: int = 24) -> list[Job]:
                     hours_old=hours_back,
                     country_indeed="USA",
                     linkedin_fetch_description=True,
-                    #is_remote=True,
                 )
                 if df is not None and not df.empty:
                     jobs = _df_to_jobs(df, seen_urls)

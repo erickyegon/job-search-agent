@@ -10,6 +10,7 @@ personal:
   work_authorization: "U.S. Permanent Resident (EB-1A) — No Sponsorship Required"
 
 target_roles:
+  # AI / ML Engineering
   - "Senior GenAI Engineer"
   - "Staff GenAI Engineer"
   - "Senior AI/ML Engineer"
@@ -24,6 +25,17 @@ target_roles:
   - "RAG Engineer"
   - "MLOps Engineer"
   - "LLMOps Engineer"
+  # Research / Statistics / Epidemiology
+  - "Senior Biostatistician"
+  - "Principal Biostatistician"
+  - "Senior Statistician"
+  - "Principal Statistician"
+  - "Senior Epidemiologist"
+  - "Research Scientist"
+  - "Senior Data Scientist (Healthcare)"
+  - "Health Data Scientist"
+  - "Statistical Programmer"
+  - "Population Health Scientist"
 
 skills:
   expert:
