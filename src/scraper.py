@@ -27,6 +27,13 @@ CORE_QUERIES = [
     "AI architect",
     "AI product manager",
     "developer advocate AI",
+    # AI Safety & Guardrails
+    "AI safety engineer",
+    "responsible AI engineer",
+    "AI guardrails engineer",
+    "trust safety engineer AI",
+    "LLM safety engineer",
+    "NeMo guardrails",
     # Research Scientist / Statistician / Epidemiologist
     "senior biostatistician",
     "principal biostatistician",

@@ -25,6 +25,11 @@ target_roles:
   - "RAG Engineer"
   - "MLOps Engineer"
   - "LLMOps Engineer"
+  # AI Safety & Guardrails
+  - "AI Safety Engineer"
+  - "AI Guardrails Engineer"
+  - "Responsible AI Engineer"
+  - "Trust & Safety Engineer (AI)"
   # Research / Statistics / Epidemiology
   - "Senior Biostatistician"
   - "Principal Biostatistician"
@@ -61,6 +66,16 @@ skills:
     - "Streamlit"
     - "FAISS"
     - "Qdrant"
+    # AI Guardrails & Safety
+    - "NeMo Guardrails"
+    - "Colang"
+    - "AI Guardrails Architecture"
+    - "I/O Rails (Input/Output Validation)"
+    - "Dialogue Rails & Flow Control"
+    - "Prompt Injection Prevention"
+    - "PII Leak Detection"
+    - "LLM Output Validation"
+    - "Hallucination Detection"
 
   proficient:
     - "AWS SageMaker"
@@ -99,6 +114,9 @@ skills:
     - "Statistical Modeling"
     - "Bias Detection"
     - "Research Leadership"
+    - "AI Safety & Responsible AI"
+    - "Enterprise AI Guardrails"
+    - "LLM Red-Teaming & Adversarial Testing"
 
 preferences:
   remote: true

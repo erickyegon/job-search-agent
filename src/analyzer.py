@@ -19,7 +19,7 @@ SYSTEM_PROMPT = """You are a job matching assistant for a senior AI/ML engineer.
 You must evaluate each job across 6 dimensions:
 1. Technical Match (30%): Overlap between candidate's skills and job requirements
 2. Seniority Fit (20%): Does the level match 17+ years of experience? Penalize junior/mid roles.
-3. Domain Alignment (15%): Healthcare AI, agentic systems, RAG, LLM engineering overlap
+3. Domain Alignment (15%): Healthcare AI, agentic systems, RAG, LLM engineering, AI guardrails/safety overlap
 4. Company Tier (15%): Is this a priority company or sector?
 5. Remote/Location (10%): Remote-friendly? Compatible with Richmond, KY?
 6. Growth Potential (10%): Does it advance the candidate's career?
@@ -185,7 +185,7 @@ DESCRIPTION: {job.description[:2000]}"""
         # Mark suspicious jobs as SKIP regardless of score
         if job.is_suspicious:
             job.recommendation = Recommendation.SKIP
-            logger.info(f"Suspicious job flagged: {job.title} @ {job.company} — {data.get('suspicious_reason', 'unknown')}")
+            logger.info(f"Suspicious job flagged: {job.title} @ {job.company} - {data.get('suspicious_reason', 'unknown')}")
 
         logger.info(f"  {job.recommendation.value} ({job.score}): {job.title} @ {job.company}")
         return job
