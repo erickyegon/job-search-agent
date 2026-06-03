@@ -9,3 +9,6 @@ build/
 .pytest_cache/
 .venv/
 venv/
+logs.txt
+*.bat
+*.db-journal
