@@ -25,6 +25,13 @@ on:
         description: 'Hours to look back for jobs'
         type: number
         default: 24
+      mode:
+        description: 'Pipeline mode'
+        type: choice
+        options:
+          - single
+          - multi
+        default: single
 
 jobs:
   scrape-and-notify:
@@ -94,7 +101,12 @@ jobs:
           if [ "${{ steps.flags.outputs.telegram }}" = "true" ]; then
             FLAGS="$FLAGS --telegram"
           fi
-          python -m src.main $FLAGS --hours ${{ steps.flags.outputs.hours }}
+          MODE="${{ github.event.inputs.mode || 'single' }}"
+          if [ "$MODE" = "multi" ]; then
+            python -m src.pipeline_multi $FLAGS --hours ${{ steps.flags.outputs.hours }}
+          else
+            python -m src.main $FLAGS --hours ${{ steps.flags.outputs.hours }}
+          fi
 
       - name: Upload job database
         if: always()

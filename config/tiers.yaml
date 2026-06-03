@@ -1,0 +1,28 @@
+# Pricing tiers for JobMatch AI
+tiers:
+  free:
+    name: "Free"
+    price_monthly: 0
+    max_alerts_per_day: 5
+    email_notifications: true
+    telegram_notifications: false
+    max_search_queries: 5
+    company_scrapers: false
+
+  pro:
+    name: "Pro"
+    price_monthly: 9.99
+    max_alerts_per_day: 50
+    email_notifications: true
+    telegram_notifications: true
+    max_search_queries: 30
+    company_scrapers: true
+
+  enterprise:
+    name: "Enterprise"
+    price_monthly: 29.99
+    max_alerts_per_day: 999
+    email_notifications: true
+    telegram_notifications: true
+    max_search_queries: 50
+    company_scrapers: true

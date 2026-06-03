@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - JobMatch AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-4xl mx-auto px-6 py-4">
+            <a href="/" class="text-2xl font-bold text-indigo-600">JobMatch AI</a>
+        </div>
+    </nav>
+
+    <div class="max-w-xl mx-auto px-6 py-12">
+        <div class="bg-white p-8 rounded-xl shadow-sm">
+            <h2 class="text-2xl font-bold mb-6">Create Your Account</h2>
+            <form id="signupForm" enctype="multipart/form-data" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" name="name" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                           placeholder="Erick Yegon">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                    <input type="email" name="email" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                           placeholder="you@example.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Telegram Chat ID <span class="text-gray-400">(optional)</span></label>
+                    <input type="text" name="telegram_chat_id"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                           placeholder="123456789">
+                    <p class="text-xs text-gray-500 mt-1">Message <a href="https://t.me/userinfobot" class="text-indigo-500">@userinfobot</a> on Telegram to get your ID</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Upload Resume * <span class="text-gray-400">(PDF or DOCX)</span></label>
+                    <input type="file" name="resume" accept=".pdf,.docx,.doc,.txt" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg file:mr-4 file:py-1 file:px-4 file:rounded file:border-0 file:bg-indigo-50 file:text-indigo-600 file:font-semibold">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Discount Code <span class="text-gray-400">(optional)</span></label>
+                    <input type="text" name="discount_code"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                           placeholder="LAUNCH50">
+                </div>
+                <button type="submit" id="submitBtn"
+                        class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition">
+                    Create Account &amp; Start Matching
+                </button>
+            </form>
+            <div id="result" class="mt-4 hidden"></div>
+        </div>
+    </div>
+
+    <script>
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const result = document.getElementById('result');
+        btn.disabled = true;
+        btn.textContent = 'Parsing resume & creating account...';
+
+        const formData = new FormData(e.target);
+        try {
+            const resp = await fetch('/api/signup', { method: 'POST', body: formData });
+            const data = await resp.json();
+            if (data.success) {
+                result.className = 'mt-4 p-4 bg-green-50 text-green-800 rounded-lg';
+                result.innerHTML = `${data.message} <a href="${data.dashboard_url}" class="underline font-bold">Go to Dashboard &rarr;</a>`;
+                if (data.discount && data.discount.message) {
+                    result.innerHTML += `<br><span class="text-green-600">${data.discount.message}</span>`;
+                }
+            } else {
+                result.className = 'mt-4 p-4 bg-red-50 text-red-800 rounded-lg';
+                result.textContent = data.error || 'Something went wrong.';
+            }
+        } catch (err) {
+            result.className = 'mt-4 p-4 bg-red-50 text-red-800 rounded-lg';
+            result.textContent = 'Network error. Please try again.';
+        }
+        result.classList.remove('hidden');
+        btn.disabled = false;
+        btn.textContent = 'Create Account & Start Matching';
+    });
+    </script>
+</body>
+</html>

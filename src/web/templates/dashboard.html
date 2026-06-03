@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - JobMatch AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-indigo-600">JobMatch AI</a>
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-600">{{ user.email }}</span>
+                <span class="px-3 py-1 rounded-full text-xs font-bold
+                    {% if user.plan == 'pro' %}bg-indigo-100 text-indigo-700
+                    {% elif user.plan == 'enterprise' %}bg-purple-100 text-purple-700
+                    {% else %}bg-gray-100 text-gray-600{% endif %}">
+                    {{ user.plan|upper }}
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-6 py-8">
+        <!-- Profile summary -->
+        <div class="bg-white p-6 rounded-xl shadow-sm mb-8">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h2 class="text-xl font-bold">{{ profile.get('name', user.name) or user.email }}</h2>
+                    <p class="text-gray-600 mt-1">{{ profile.get('summary', 'Upload your resume to generate a profile.') }}</p>
+                    {% if profile.get('target_roles') %}
+                    <div class="mt-3 flex flex-wrap gap-2">
+                        {% for role in profile.get('target_roles', [])[:6] %}
+                        <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs rounded-full">{{ role }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="text-right text-sm text-gray-500">
+                    <p>Plan: <strong>{{ plan_info.name }}</strong> ({{ plan_info.price_display }}{{ plan_info.period }})</p>
+                    <p>{{ limits.max_alerts_per_day }} alerts/day</p>
+                    {% if user.plan == 'free' %}
+                    <a href="#upgrade" class="text-indigo-600 font-semibold">Upgrade &rarr;</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Re-upload resume -->
+        <div class="bg-white p-6 rounded-xl shadow-sm mb-8">
+            <h3 class="font-bold mb-3">Update Resume</h3>
+            <form id="resumeForm" enctype="multipart/form-data" class="flex gap-4 items-end">
+                <input type="file" name="resume" accept=".pdf,.docx,.doc,.txt" required
+                       class="flex-1 px-4 py-2 border border-gray-300 rounded-lg file:mr-4 file:py-1 file:px-4 file:rounded file:border-0 file:bg-indigo-50 file:text-indigo-600 file:font-semibold">
+                <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-indigo-700">Update Profile</button>
+            </form>
+            <div id="resumeResult" class="mt-2 hidden text-sm"></div>
+        </div>
+
+        <!-- Job matches -->
+        <div class="mb-4 flex justify-between items-center">
+            <h3 class="text-xl font-bold">Your Job Matches</h3>
+            <span class="text-sm text-gray-500">{{ jobs|length }} jobs found</span>
+        </div>
+
+        {% if jobs %}
+        <div class="space-y-4">
+            {% for job in jobs %}
+            <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                <div class="flex justify-between items-start">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-0.5 rounded text-xs font-bold
+                                {% if job.recommendation == 'APPLY' %}bg-green-100 text-green-700
+                                {% elif job.recommendation == 'MAYBE' %}bg-yellow-100 text-yellow-700
+                                {% else %}bg-gray-100 text-gray-600{% endif %}">
+                                {{ job.recommendation }}
+                            </span>
+                            <span class="text-sm font-bold text-indigo-600">{{ job.score }}/100</span>
+                        </div>
+                        <h4 class="text-lg font-semibold">
+                            <a href="{{ job.url }}" target="_blank" class="hover:text-indigo-600">{{ job.title }}</a>
+                        </h4>
+                        <p class="text-gray-600">{{ job.company }} &middot; {{ job.location }}</p>
+                        {% if job.salary_range %}<p class="text-green-700 text-sm font-medium mt-1">{{ job.salary_range }}</p>{% endif %}
+                        <p class="text-gray-500 text-sm mt-2">{{ job.reasoning }}</p>
+                    </div>
+                    <div class="text-right text-xs text-gray-400 ml-4 whitespace-nowrap">
+                        {{ job.source }}<br>
+                        {{ job.first_seen[:10] if job.first_seen else '' }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="bg-white p-12 rounded-xl shadow-sm text-center text-gray-500">
+            <p class="text-lg">No job matches yet.</p>
+            <p class="mt-2">Jobs are scanned every 4 hours. Check back soon!</p>
+        </div>
+        {% endif %}
+
+        <!-- Upgrade section -->
+        {% if user.plan == 'free' %}
+        <div id="upgrade" class="mt-12 bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-8 rounded-xl">
+            <h3 class="text-2xl font-bold mb-2">Upgrade to Pro</h3>
+            <p class="mb-4">Get 50 alerts/day, Telegram notifications, and company career page scraping.</p>
+            <div class="flex gap-4 items-center">
+                <input type="text" id="discountInput" placeholder="Discount code"
+                       class="px-4 py-2 rounded-lg text-gray-900 w-48">
+                <button onclick="checkout('pro')" class="bg-white text-indigo-600 px-6 py-2 rounded-lg font-bold hover:bg-gray-100">
+                    Upgrade $9.99/mo &rarr;
+                </button>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+    const userId = {{ user.id }};
+
+    document.getElementById('resumeForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const result = document.getElementById('resumeResult');
+        const formData = new FormData(e.target);
+        result.textContent = 'Parsing resume...';
+        result.className = 'mt-2 text-sm text-gray-600';
+        result.classList.remove('hidden');
+        try {
+            const resp = await fetch(`/api/upload-resume/${userId}`, { method: 'POST', body: formData });
+            const data = await resp.json();
+            if (data.success) {
+                result.className = 'mt-2 text-sm text-green-600';
+                result.textContent = data.message;
+                setTimeout(() => location.reload(), 1500);
+            } else {
+                result.className = 'mt-2 text-sm text-red-600';
+                result.textContent = 'Failed to parse resume.';
+            }
+        } catch (err) {
+            result.className = 'mt-2 text-sm text-red-600';
+            result.textContent = 'Network error.';
+        }
+    });
+
+    async function checkout(plan) {
+        const code = document.getElementById('discountInput')?.value || '';
+        const formData = new FormData();
+        formData.append('plan', plan);
+        formData.append('discount_code', code);
+        try {
+            const resp = await fetch(`/api/checkout/${userId}`, { method: 'POST', body: formData });
+            const data = await resp.json();
+            if (data.checkout_url) {
+                window.location.href = data.checkout_url;
+            }
+        } catch (err) {
+            alert('Payment setup failed. Please try again.');
+        }
+    }
+    </script>
+</body>
+</html>
