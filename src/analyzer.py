@@ -1,5 +1,6 @@
-"""Claude Haiku job analyzer â€” scores jobs against your profile."""
+"""Claude Haiku job analyzer — scores jobs against your profile."""
 
+import asyncio
 import logging
 import json
 import yaml
@@ -62,10 +63,10 @@ DESCRIPTION: We're looking for a Senior GenAI Engineer to build production agent
         "content": json.dumps({
             "score": 97,
             "recommendation": "APPLY",
-            "reasoning": "Near-perfect match. Requires LangChain, MCP, agentic AI, RAG, and Claude expertise â€” all candidate's expert skills. Senior level fits 17+ years. Anthropic is priority company #1. Remote compatible. Freshness bonus: +5 (posted 2h ago).",
+            "reasoning": "Near-perfect match. Requires LangChain, MCP, agentic AI, RAG, and Claude expertise — all candidate's expert skills. Senior level fits 17+ years. Anthropic is priority company #1. Remote compatible. Freshness bonus: +5 (posted 2h ago).",
             "key_matches": ["LangChain", "MCP", "Agentic AI", "RAG", "Python", "FastAPI", "LLM fine-tuning", "Claude SDK"],
             "gaps": [],
-            "salary_estimate": "$250,000â€“$350,000 TC",
+            "salary_estimate": "$250,000–$350,000 TC",
             "is_suspicious": False,
             "suspicious_reason": None
         })
@@ -95,27 +96,31 @@ DESCRIPTION: Looking for a data analyst to create dashboards. Must know Excel an
 
 class JobAnalyzer:
     def __init__(self, config: Config):
-        self.client = anthropic.Anthropic(api_key=config.anthropic_api_key)
+        self.client = anthropic.AsyncAnthropic(api_key=config.anthropic_api_key)
         self.model = config.claude_model
         self.profile = load_profile()
         self._profile_text = yaml.dump(self.profile, default_flow_style=False)
+        self._system = f"{SYSTEM_PROMPT}\n\n--- CANDIDATE PROFILE ---\n{self._profile_text}"
 
-    def analyze_batch(self, jobs: list[Job]) -> list[Job]:
-        """Analyze a batch of jobs against the profile."""
-        analyzed = []
-        for job in jobs:
-            try:
-                result = self._analyze_single(job)
-                analyzed.append(result)
-            except Exception as e:
-                logger.warning(f"Analysis failed for '{job.title}' @ {job.company}: {e}")
-                job.score = 0
-                job.recommendation = Recommendation.SKIP
-                job.reasoning = f"Analysis failed: {str(e)[:100]}"
-                analyzed.append(job)
-        return analyzed
+    async def analyze_batch(self, jobs: list[Job], max_concurrent: int = 10) -> list[Job]:
+        """Analyze a batch of jobs concurrently against the profile."""
+        semaphore = asyncio.Semaphore(max_concurrent)
 
-    def _analyze_single(self, job: Job) -> Job:
+        async def _analyze_with_limit(job: Job) -> Job:
+            async with semaphore:
+                try:
+                    return await self._analyze_single(job)
+                except Exception as e:
+                    logger.warning(f"Analysis failed for '{job.title}' @ {job.company}: {e}")
+                    job.score = 0
+                    job.recommendation = Recommendation.SKIP
+                    job.reasoning = f"Analysis failed: {str(e)[:100]}"
+                    return job
+
+        results = await asyncio.gather(*[_analyze_with_limit(j) for j in jobs])
+        return list(results)
+
+    async def _analyze_single(self, job: Job) -> Job:
         """Analyze a single job listing."""
         # Build the job description for Claude
         age_info = ""
@@ -137,10 +142,10 @@ DESCRIPTION: {job.description[:2000]}"""
             {"role": "user", "content": user_message}
         ]
 
-        response = self.client.messages.create(
+        response = await self.client.messages.create(
             model=self.model,
             max_tokens=500,
-            system=f"{SYSTEM_PROMPT}\n\n--- CANDIDATE PROFILE ---\n{self._profile_text}",
+            system=self._system,
             messages=messages,
         )
 
@@ -180,7 +185,7 @@ DESCRIPTION: {job.description[:2000]}"""
         # Mark suspicious jobs as SKIP regardless of score
         if job.is_suspicious:
             job.recommendation = Recommendation.SKIP
-            logger.info(f"Suspicious job flagged: {job.title} @ {job.company} â€” {data.get('suspicious_reason', 'unknown')}")
+            logger.info(f"Suspicious job flagged: {job.title} @ {job.company} — {data.get('suspicious_reason', 'unknown')}")
 
         logger.info(f"  {job.recommendation.value} ({job.score}): {job.title} @ {job.company}")
         return job

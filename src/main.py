@@ -61,24 +61,31 @@ async def run_pipeline(notify_email=False, notify_telegram=False, hours_back=24)
             logger.info("No new jobs since last run.")
         else:
             logger.info(f"New jobs to analyze: {len(new_jobs)}")
-            logger.info("STAGE 3: Validating links...")
-            verified_jobs = await validate_links(new_jobs)
-            logger.info(f"Jobs with verified links: {len(verified_jobs)}")
-            if not verified_jobs:
-                logger.info("No jobs passed link validation.")
+
+            logger.info("STAGE 3: Analyzing with Claude (concurrent)...")
+            analyzer = JobAnalyzer(config)
+            analyzed_jobs = await analyzer.analyze_batch(new_jobs)
+            clean_jobs = [j for j in analyzed_jobs if not j.is_suspicious]
+            suspicious_count = len(analyzed_jobs) - len(clean_jobs)
+            if suspicious_count:
+                logger.info(f"Filtered {suspicious_count} suspicious jobs")
+
+            # Only validate links for APPLY/MAYBE jobs (skip the bulk)
+            worth_validating = [j for j in clean_jobs if j.score >= 60]
+            skip_jobs = [j for j in clean_jobs if j.score < 60]
+            if worth_validating:
+                logger.info(f"STAGE 4: Validating links for {len(worth_validating)} APPLY/MAYBE jobs...")
+                verified_jobs = await validate_links(worth_validating)
+                clean_jobs = verified_jobs + skip_jobs
             else:
-                logger.info("STAGE 4: Analyzing with Claude...")
-                analyzer = JobAnalyzer(config)
-                analyzed_jobs = analyzer.analyze_batch(verified_jobs)
-                clean_jobs = [j for j in analyzed_jobs if not j.is_suspicious]
-                suspicious_count = len(analyzed_jobs) - len(clean_jobs)
-                if suspicious_count:
-                    logger.info(f"Filtered {suspicious_count} suspicious jobs")
-                dedup.save_jobs(clean_jobs)
-                ac = sum(1 for j in clean_jobs if j.recommendation.value == "APPLY")
-                mc = sum(1 for j in clean_jobs if j.recommendation.value == "MAYBE")
-                sc = sum(1 for j in clean_jobs if j.recommendation.value == "SKIP")
-                logger.info(f"Analysis results: {ac} APPLY, {mc} MAYBE, {sc} SKIP")
+                logger.info("STAGE 4: No APPLY/MAYBE jobs to validate links for.")
+
+            ac = sum(1 for j in clean_jobs if j.recommendation.value == "APPLY")
+            mc = sum(1 for j in clean_jobs if j.recommendation.value == "MAYBE")
+            sc = sum(1 for j in clean_jobs if j.recommendation.value == "SKIP")
+            logger.info(f"Analysis results: {ac} APPLY, {mc} MAYBE, {sc} SKIP")
+            dedup.save_jobs(clean_jobs)
+
         if notify_email:
             logger.info("STAGE 5a: Sending email digest...")
             email_jobs = dedup.get_unnotified("email", min_score=60)
