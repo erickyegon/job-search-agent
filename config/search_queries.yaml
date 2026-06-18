@@ -1,130 +1,161 @@
-# Search queries — dual-track: Global Health Executive (A) + AI/Agentic Architecture (B)
-# Each query is run against applicable sources.
+# Three-track search — proportions match competitive advantage:
+# Track A 40%: HEOR / RWE / Health Economics (largest moat, least competition)
+# Track B 35%: Global Health Analytics & Research Leadership
+# Track C 25%: Health AI specifically (NOT generic AI engineering)
 
 queries:
 
-  # ── Track A: Global Health Executive ──────────────────────────────────────
-  # Director / VP / Head level
-  - "director global health data remote"
-  - "director health analytics remote"
-  - "VP health analytics remote"
-  - "VP data science health remote"
-  - "chief data officer health"
-  - "head population health analytics"
-  - "head impact measurement remote"
-  - "director epidemiology data science"
-  - "global health AI lead"
-  - "director digital health remote"
-  - "director monitoring evaluation learning remote"
-  - "MEL director remote"
-  - "director real world evidence remote"
-  - "director health economics outcomes research"
-  - "director research evaluation global health"
+  # ── TRACK A: HEOR / RWE / Health Economics (40%) ──────────────────────────
+  # Roles where PhD Epidemiology + causal inference + health economics = rare
 
-  # Epidemiology / Biostatistics / Population Health
+  # HEOR / Outcomes Research
+  - "HEOR scientist remote"
+  - "HEOR director remote"
+  - "health economics outcomes research scientist"
+  - "outcomes research scientist remote"
+  - "outcomes research director remote"
+  - "health economist senior remote"
+  - "health economics modeling lead"
+  - "director health economics remote"
+  - "VP health economics remote"
+  - "health economics research director"
+
+  # Real World Evidence
+  - "real world evidence scientist remote"
+  - "real world evidence director remote"
+  - "RWE scientist remote"
+  - "RWE director remote"
+  - "real world evidence lead epidemiologist"
+  - "real world data scientist senior"
+
+  # Comparative Effectiveness / Value Evidence
+  - "comparative effectiveness research scientist"
+  - "value evidence outcomes research"
+  - "market access outcomes research"
+  - "payer evidence scientist remote"
+
+  # Pharmacoepidemiology / Causal Inference
+  - "pharmacoepidemiologist senior remote"
+  - "epidemiologist outcomes research"
+  - "causal inference health researcher"
+  - "causal inference health economist"
+
+  # Health Data / Claims Analytics (payer / life sciences angle)
+  - "health data scientist claims analytics"
+  - "claims data scientist senior remote"
+  - "population health scientist senior"
+  - "clinical epidemiologist senior remote"
+  - "health outcomes scientist remote"
+  - "health outcomes researcher director"
+
+  # Life Sciences / Pharma RWE orgs
+  - "IQVIA epidemiologist"
+  - "IQVIA real world evidence"
+  - "Flatiron Health epidemiologist"
+  - "Aetion scientist"
+  - "ConcertAI scientist"
+  - "Tempus AI scientist"
+  - "Komodo Health scientist"
+  - "Truveta epidemiologist"
+
+  # ── TRACK B: Global Health Analytics & Research Leadership (35%) ───────────
+  # Roles where 17 years + Living Goods + Gates credibility = irreplaceable
+
+  # Director / VP / Head level
+  - "director health analytics remote"
+  - "director global health data remote"
+  - "director evidence learning remote"
+  - "director measurement evaluation remote"
+  - "director impact measurement remote"
+  - "VP health analytics remote"
+  - "head of data science global health"
+  - "head population health analytics"
+  - "global health data science director"
+  - "research director global health"
+
+  # Monitoring Evaluation Learning (MEL)
+  - "MEL director remote"
+  - "director monitoring evaluation learning remote"
+  - "senior MEL advisor"
+  - "impact evaluation director remote"
+  - "program evaluation director remote"
+
+  # Epidemiology / Biostatistics / Population Health (senior / principal)
   - "senior epidemiologist remote"
   - "principal epidemiologist remote"
-  - "epidemiologist data scientist"
   - "senior biostatistician remote"
-  - "principal biostatistician"
+  - "principal biostatistician remote"
   - "director biostatistics remote"
-  - "senior statistician remote"
-  - "population health scientist"
+  - "population health scientist senior"
   - "senior data scientist epidemiology"
-  - "health data scientist senior"
+  - "health data scientist senior remote"
 
-  # Health Economics / Outcomes / RWE
-  - "health economist senior remote"
-  - "outcomes research director remote"
-  - "real world evidence director remote"
-  - "health economics outcomes research"
-
-  # Foundation / NGO / Government health
-  - "Gates Foundation data science"
-  - "USAID data analytics"
-  - "PATH global health data"
-  - "UNICEF data science remote"
-  - "WHO health analytics"
-  - "IHME research scientist"
-  - "global health research director"
-  - "impact evaluation director remote"
-
-  # Digital Health / Health AI (executive angle)
+  # Digital Health / Health Systems
+  - "director digital health remote"
   - "digital health strategy director"
-  - "population health AI remote"
-  - "healthcare AI director"
-  - "clinical data science director"
+  - "health informatics director remote"
+  - "health systems analytics director"
 
-  # ── Track B: AI / Agentic Architecture ────────────────────────────────────
-  # Senior / Staff / Principal AI engineering
-  - "senior GenAI engineer remote"
-  - "staff GenAI engineer"
-  - "senior AI ML engineer remote"
-  - "principal AI engineer remote"
-  - "AI architect remote"
-  - "agentic AI engineer"
-  - "LLM engineer remote"
-  - "RAG engineer remote"
-  - "AI solutions architect remote"
-  - "director AI engineering remote"
-  - "head of AI ML remote"
+  # Foundation / NGO / Government health roles
+  - "Gates Foundation data science"
+  - "USAID data analytics director"
+  - "PATH global health analytics"
+  - "global health research director"
+  - "IDinsight research director"
+  - "Mathematica senior researcher"
+  - "RTI International epidemiologist"
+  - "Abt Global senior researcher"
 
-  # MLOps / LLMOps
-  - "MLOps engineer senior remote"
-  - "LLMOps engineer remote"
-  - "AI infrastructure engineer senior"
+  # ── TRACK C: Health AI (25%) ───────────────────────────────────────────────
+  # AI roles ONLY where health domain knowledge is required or a strong plus.
+  # No generic AI engineering (Netflix, JPMorgan, Roku, etc.)
 
-  # AI Safety & Guardrails
-  - "AI safety engineer remote"
-  - "responsible AI engineer"
-  - "AI guardrails engineer"
-  - "trust safety engineer AI"
-  - "LLM safety engineer"
+  # Clinical AI / Healthcare AI Science
+  - "clinical AI scientist remote"
+  - "healthcare AI research scientist"
+  - "AI outcomes scientist remote"
+  - "health AI scientist senior"
+  - "clinical data scientist AI remote"
+  - "AI clinical epidemiologist"
 
-  # Healthcare AI (intersection — scored on both tracks)
-  - "healthcare AI engineer senior"
-  - "clinical AI engineer"
-  - "health AI architect"
-  - "AI ML healthcare remote"
-  - "senior data scientist healthcare AI"
+  # Responsible AI / AI Evaluation in Healthcare
+  - "responsible AI healthcare lead"
+  - "health AI evaluation scientist"
+  - "AI safety health remote"
+  - "AI guardrails healthcare"
+
+  # Health-specific LLM / RAG roles
+  - "LLM health data scientist"
+  - "clinical NLP scientist senior"
+  - "health NLP engineer senior"
+  - "medical AI engineer senior"
+  - "clinical decision support AI engineer"
   - "population health machine learning"
-  - "health NLP engineer"
 
-  # Consulting / Enterprise AI
-  - "AI consultant senior remote"
-  - "AI solutions consultant"
-  - "machine learning consultant senior"
-
-  # Product / DevRel
-  - "AI product manager remote"
-  - "developer relations AI"
-  - "AI developer advocate"
-
-  # Research Scientist (AI)
-  - "research scientist AI remote"
-  - "research scientist health AI"
-  - "NLP research scientist"
-  - "applied scientist AI remote"
+  # Health AI at specific orgs where health domain matters
+  - "Optum AI engineer senior"
+  - "Humana AI scientist"
+  - "Kaiser Permanente data scientist AI"
+  - "IQVIA AI data scientist"
+  - "Tempus AI engineer"
+  - "Natera data scientist"
+  - "Dandelion Health scientist"
 
   # ── Relocation-targeted: Seattle & Portland ────────────────────────────────
-  # Narrow city-specific queries for WA/OR relocation interest.
-  # All other queries run against "United States" only to keep runtime bounded.
   - "health analytics director Seattle"
-  - "global health data Seattle"
   - "epidemiologist Seattle"
-  - "AI engineer Seattle"
-  - "senior data scientist Seattle"
-  - "health analytics director Portland"
+  - "global health data Seattle"
+  - "HEOR scientist Seattle"
+  - "AI health scientist Seattle"
+  - "health analytics director Portland Oregon"
   - "epidemiologist Portland Oregon"
-  - "AI engineer Portland Oregon"
-  - "senior data scientist Portland"
+  - "HEOR scientist Portland Oregon"
+  - "AI health engineer Portland"
 
-# Single location — "United States" covers remote + nationwide jobs.
-# Queries that already contain "remote" don't need city-level repetition.
-# Seattle/Portland relocation interest is handled by the city-specific
-# queries in the Track A and Track B sections above.
+# Single location — covers remote + nationwide.
+# City-specific relocation interest handled by the targeted queries above.
 locations:
   - "United States"
 
-# Max results per query per source (to stay within rate limits)
+# Max results per query per source
 max_results_per_query: 25
