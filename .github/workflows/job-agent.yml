@@ -24,7 +24,7 @@ on:
       hours_back:
         description: 'Hours to look back for jobs'
         type: number
-        default: 24
+        default: 5
       mode:
         description: 'Pipeline mode'
         type: choice
@@ -59,7 +59,7 @@ jobs:
           restore-keys: |
             jobs-db-
 
-      - name: Determine notification flags
+      - name: Determine notification flags and lookback window
         id: flags
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
@@ -67,10 +67,12 @@ jobs:
             echo "telegram=${{ github.event.inputs.notify_telegram }}" >> $GITHUB_OUTPUT
             echo "hours=${{ github.event.inputs.hours_back }}" >> $GITHUB_OUTPUT
           else
-            # Determine based on cron schedule (UTC hour)
+            # Each scheduled run looks back 5 hours (4h interval + 1h overlap buffer
+            # to avoid gaps from GitHub scheduler drift). The dedup engine ensures
+            # jobs seen in the overlap window are never re-notified.
             HOUR=$(date -u +%H)
             case $HOUR in
-              03) # 6AM EAT — full notification
+              03) # 6AM EAT — full notification run
                 echo "email=true" >> $GITHUB_OUTPUT
                 echo "telegram=true" >> $GITHUB_OUTPUT
                 ;;
@@ -78,12 +80,12 @@ jobs:
                 echo "email=false" >> $GITHUB_OUTPUT
                 echo "telegram=true" >> $GITHUB_OUTPUT
                 ;;
-              *) # Silent scrape runs
+              *) # Silent scrape runs — store new jobs, no notifications
                 echo "email=false" >> $GITHUB_OUTPUT
                 echo "telegram=false" >> $GITHUB_OUTPUT
                 ;;
             esac
-            echo "hours=24" >> $GITHUB_OUTPUT
+            echo "hours=5" >> $GITHUB_OUTPUT
           fi
 
       - name: Run Job Search Agent
