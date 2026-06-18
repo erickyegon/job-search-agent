@@ -106,15 +106,25 @@ queries:
   - "NLP research scientist"
   - "applied scientist AI remote"
 
-# Location filters for aggregator searches
-# Remote always searched; WA and OR added for relocation interest
+  # ── Relocation-targeted: Seattle & Portland ────────────────────────────────
+  # Narrow city-specific queries for WA/OR relocation interest.
+  # All other queries run against "United States" only to keep runtime bounded.
+  - "health analytics director Seattle"
+  - "global health data Seattle"
+  - "epidemiologist Seattle"
+  - "AI engineer Seattle"
+  - "senior data scientist Seattle"
+  - "health analytics director Portland"
+  - "epidemiologist Portland Oregon"
+  - "AI engineer Portland Oregon"
+  - "senior data scientist Portland"
+
+# Single location — "United States" covers remote + nationwide jobs.
+# Queries that already contain "remote" don't need city-level repetition.
+# Seattle/Portland relocation interest is handled by the city-specific
+# queries in the Track A and Track B sections above.
 locations:
-  - "Remote"
   - "United States"
-  - "Seattle, WA"
-  - "Portland, OR"
-  - "Washington State"
-  - "Oregon"
 
 # Max results per query per source (to stay within rate limits)
 max_results_per_query: 25
