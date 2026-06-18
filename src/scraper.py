@@ -15,50 +15,12 @@ logger = logging.getLogger(__name__)
 
 JOBSPY_SITES = ["indeed", "linkedin", "google"]
 
-CORE_QUERIES = [
-    # AI / ML Engineering
-    "generative AI engineer",
-    "AI ML engineer",
-    "LLM engineer",
-    "AI solutions architect",
-    "machine learning engineer senior",
-    "MLOps engineer",
-    "NLP engineer",
-    "AI architect",
-    "AI product manager",
-    "developer advocate AI",
-    # AI Safety & Guardrails
-    "AI safety engineer",
-    "responsible AI engineer",
-    "AI guardrails engineer",
-    "trust safety engineer AI",
-    "LLM safety engineer",
-    "NeMo guardrails",
-    # Research Scientist / Statistician / Epidemiologist
-    "senior biostatistician",
-    "principal biostatistician",
-    "senior statistician",
-    "principal statistician",
-    "senior epidemiologist",
-    "epidemiologist data scientist",
-    "research scientist AI",
-    "research scientist health",
-    "research scientist statistics",
-    "statistical programmer senior",
-    "data scientist healthcare",
-    "health data scientist",
-    "population health data scientist",
-    "biostatistician",
-    "epidemiologist",
-    "Research Scientist",
-    "data scientist senior",
-]
-
 
 def scrape_aggregators(hours_back: int = 24) -> list[Job]:
     config = load_search_queries()
-    queries = CORE_QUERIES
-    locations = ["United States"]
+    # Read queries and locations from search_queries.yaml (single source of truth)
+    queries = config.get("queries", [])
+    locations = config.get("locations", ["United States"])
     max_results = config.get("max_results_per_query", 25)
     all_jobs: list[Job] = []
     seen_urls: set[str] = set()
