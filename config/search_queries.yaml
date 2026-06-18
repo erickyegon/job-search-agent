@@ -1,50 +1,120 @@
-# Search queries used by JobSpy and custom scrapers
-# Each query is run against applicable sources
+# Search queries — dual-track: Global Health Executive (A) + AI/Agentic Architecture (B)
+# Each query is run against applicable sources.
 
 queries:
-  # --- AI / ML Engineering ---
+
+  # ── Track A: Global Health Executive ──────────────────────────────────────
+  # Director / VP / Head level
+  - "director global health data remote"
+  - "director health analytics remote"
+  - "VP health analytics remote"
+  - "VP data science health remote"
+  - "chief data officer health"
+  - "head population health analytics"
+  - "head impact measurement remote"
+  - "director epidemiology data science"
+  - "global health AI lead"
+  - "director digital health remote"
+  - "director monitoring evaluation learning remote"
+  - "MEL director remote"
+  - "director real world evidence remote"
+  - "director health economics outcomes research"
+  - "director research evaluation global health"
+
+  # Epidemiology / Biostatistics / Population Health
+  - "senior epidemiologist remote"
+  - "principal epidemiologist remote"
+  - "epidemiologist data scientist"
+  - "senior biostatistician remote"
+  - "principal biostatistician"
+  - "director biostatistics remote"
+  - "senior statistician remote"
+  - "population health scientist"
+  - "senior data scientist epidemiology"
+  - "health data scientist senior"
+
+  # Health Economics / Outcomes / RWE
+  - "health economist senior remote"
+  - "outcomes research director remote"
+  - "real world evidence director remote"
+  - "health economics outcomes research"
+
+  # Foundation / NGO / Government health
+  - "Gates Foundation data science"
+  - "USAID data analytics"
+  - "PATH global health data"
+  - "UNICEF data science remote"
+  - "WHO health analytics"
+  - "IHME research scientist"
+  - "global health research director"
+  - "impact evaluation director remote"
+
+  # Digital Health / Health AI (executive angle)
+  - "digital health strategy director"
+  - "population health AI remote"
+  - "healthcare AI director"
+  - "clinical data science director"
+
+  # ── Track B: AI / Agentic Architecture ────────────────────────────────────
+  # Senior / Staff / Principal AI engineering
   - "senior GenAI engineer remote"
   - "staff GenAI engineer"
   - "senior AI ML engineer remote"
-  - "LLM engineer remote"
-  - "AI solutions architect remote"
+  - "principal AI engineer remote"
+  - "AI architect remote"
   - "agentic AI engineer"
+  - "LLM engineer remote"
+  - "RAG engineer remote"
+  - "AI solutions architect remote"
+  - "director AI engineering remote"
+  - "head of AI ML remote"
+
+  # MLOps / LLMOps
   - "MLOps engineer senior remote"
-  - "NLP engineer senior"
-  - "AI architect"
-  - "prompt engineer senior"
+  - "LLMOps engineer remote"
+  - "AI infrastructure engineer senior"
 
-  # --- Research Scientist / Statistician / Epidemiologist ---
-  - "senior biostatistician remote"
-  - "principal biostatistician"
-  - "senior statistician remote"
-  - "principal statistician"
-  - "senior epidemiologist remote"
-  - "epidemiologist data scientist"
-  - "research scientist AI"
-  - "research scientist health"
-  - "research scientist statistics"
-  - "statistical programmer senior"
-  - "senior data scientist healthcare"
-  - "health data scientist"
-  - "population health data scientist"
-  - "senior data scientist epidemiology"
-
-  # --- AI Safety & Guardrails ---
-  - "AI safety engineer"
+  # AI Safety & Guardrails
+  - "AI safety engineer remote"
   - "responsible AI engineer"
   - "AI guardrails engineer"
   - "trust safety engineer AI"
   - "LLM safety engineer"
 
-  # --- Product / DevRel ---
+  # Healthcare AI (intersection — scored on both tracks)
+  - "healthcare AI engineer senior"
+  - "clinical AI engineer"
+  - "health AI architect"
+  - "AI ML healthcare remote"
+  - "senior data scientist healthcare AI"
+  - "population health machine learning"
+  - "health NLP engineer"
+
+  # Consulting / Enterprise AI
+  - "AI consultant senior remote"
+  - "AI solutions consultant"
+  - "machine learning consultant senior"
+
+  # Product / DevRel
   - "AI product manager remote"
   - "developer relations AI"
+  - "AI developer advocate"
+
+  # Research Scientist (AI)
+  - "research scientist AI remote"
+  - "research scientist health AI"
+  - "NLP research scientist"
+  - "applied scientist AI remote"
 
 # Location filters for aggregator searches
+# Remote always searched; WA and OR added for relocation interest
 locations:
   - "Remote"
   - "United States"
+  - "Seattle, WA"
+  - "Portland, OR"
+  - "Washington State"
+  - "Oregon"
 
 # Max results per query per source (to stay within rate limits)
 max_results_per_query: 25

@@ -2,6 +2,9 @@ personal:
   name: "Erick Kiprotich Yegon"
   email: "keyegon@gmail.com"
   location: "Richmond, KY"
+  relocation_willing:
+    - "Washington State"
+    - "Oregon"
   years_experience: 17
   education:
     - "PhD Epidemiology — JKUAT"
@@ -9,41 +12,126 @@ personal:
     - "BSc Statistics — University of Nairobi"
   work_authorization: "U.S. Permanent Resident (EB-1A) — No Sponsorship Required"
 
-target_roles:
-  # AI / ML Engineering
+# ── Track A: Global Health Executive ─────────────────────────────────────────
+# Target: Gates, PATH, CHAI, UNICEF, WHO, Truveta, IHME, Optum, Humana,
+#         research institutes, global health NGOs, health foundations
+track_a_target_roles:
+  - "Director of Health Analytics"
+  - "Director of Global Health Data"
+  - "VP of Health Analytics"
+  - "VP of Data Science (Health)"
+  - "Chief Data Officer (Health)"
+  - "Head of Impact Measurement"
+  - "Head of Population Health Analytics"
+  - "Global Health AI Lead"
+  - "Director of Epidemiology & Data Science"
+  - "Principal Epidemiologist"
+  - "Senior Epidemiologist"
+  - "Principal Biostatistician"
+  - "Senior Biostatistician"
+  - "Director of Biostatistics"
+  - "Research Director (Health)"
+  - "Director of Research & Evaluation"
+  - "Head of Health Economics & Outcomes Research"
+  - "Senior Health Economist"
+  - "Director of Real-World Evidence"
+  - "Director of Digital Health"
+  - "Population Health Scientist (Principal)"
+  - "Senior Research Scientist (Health)"
+  - "Impact Evaluation Lead"
+  - "Director of Monitoring, Evaluation & Learning"
+  - "MEL Director"
+
+track_a_priority_companies:
+  - "Bill & Melinda Gates Foundation"
+  - "PATH"
+  - "CHAI (Clinton Health Access Initiative)"
+  - "UNICEF"
+  - "WHO"
+  - "IHME (Institute for Health Metrics and Evaluation)"
+  - "Truveta"
+  - "Optum"
+  - "Humana"
+  - "USAID"
+  - "CDC"
+  - "NIH"
+  - "Mathematica"
+  - "RTI International"
+  - "ICF"
+  - "Abt Associates"
+  - "JSI"
+  - "FHI 360"
+  - "Population Services International (PSI)"
+  - "Population Council"
+  - "Palladium Group"
+  - "Results for Development"
+  - "IDinsight"
+  - "J-PAL"
+  - "Innovations for Poverty Action (IPA)"
+  - "Kaiser Permanente"
+  - "RAND Corporation"
+  - "Urban Institute"
+  - "Brookings Institution"
+
+# ── Track B: AI / Agentic Architecture ───────────────────────────────────────
+# Target: Deloitte, NVIDIA, Microsoft, Accenture, OpenAI, Netflix, Teradata,
+#         Humana AI, Optum AI, enterprise AI consultancies
+track_b_target_roles:
   - "Senior GenAI Engineer"
   - "Staff GenAI Engineer"
   - "Senior AI/ML Engineer"
   - "Staff AI/ML Engineer"
   - "AI Solutions Architect"
   - "Senior Solutions Architect"
-  - "AI Product Manager"
-  - "Developer Relations Engineer"
-  - "AI Developer Advocate"
-  - "Research Scientist (AI)"
+  - "AI Architect"
+  - "Agentic AI Engineer"
   - "LLM Engineer"
   - "RAG Engineer"
-  - "MLOps Engineer"
+  - "MLOps Engineer (Senior)"
   - "LLMOps Engineer"
-  # AI Safety & Guardrails
   - "AI Safety Engineer"
   - "AI Guardrails Engineer"
   - "Responsible AI Engineer"
   - "Trust & Safety Engineer (AI)"
-  # Research / Statistics / Epidemiology
-  - "Senior Biostatistician"
-  - "Principal Biostatistician"
-  - "Senior Statistician"
-  - "Principal Statistician"
-  - "Senior Epidemiologist"
-  - "Research Scientist"
-  - "Senior Data Scientist (Healthcare)"
-  - "Health Data Scientist"
-  - "Statistical Programmer"
-  - "Population Health Scientist"
+  - "AI Product Manager"
+  - "Developer Relations Engineer (AI)"
+  - "AI Developer Advocate"
+  - "Research Scientist (AI)"
+  - "Senior Data Scientist (Healthcare AI)"
+  - "Director of AI Engineering"
+  - "Head of AI/ML"
+  - "Principal AI Engineer"
 
+track_b_priority_companies:
+  - "Anthropic"
+  - "OpenAI"
+  - "Google DeepMind"
+  - "Microsoft"
+  - "NVIDIA"
+  - "Cohere"
+  - "Mistral"
+  - "Meta AI"
+  - "AWS"
+  - "Hugging Face"
+  - "Apple"
+  - "Databricks"
+  - "Netflix"
+  - "Deloitte"
+  - "Booz Allen Hamilton"
+  - "Accenture"
+  - "McKinsey QuantumBlack"
+  - "Teradata"
+  - "Perficient"
+  - "Palantir"
+  - "Scale AI"
+  - "Weights & Biases"
+  - "Optum AI"
+  - "Humana AI"
+
+# ── Shared skills ─────────────────────────────────────────────────────────────
 skills:
   expert:
+    # Agentic AI & LLM Engineering
     - "LangChain"
     - "LangGraph"
     - "CrewAI"
@@ -60,8 +148,6 @@ skills:
     - "Python"
     - "FastAPI"
     - "SHAP Explainability"
-    - "Causal Inference"
-    - "Epidemiological Methods"
     - "RAGAS Evaluation"
     - "Streamlit"
     - "FAISS"
@@ -76,6 +162,17 @@ skills:
     - "PII Leak Detection"
     - "LLM Output Validation"
     - "Hallucination Detection"
+    # Health analytics & epidemiology
+    - "Causal Inference"
+    - "Epidemiological Methods"
+    - "Impact Evaluation"
+    - "LiST Modeling"
+    - "Demographic Health Surveys (DHS)"
+    - "DHIS2 / HMIS"
+    - "Statistical Modeling"
+    - "Biostatistics"
+    - "Health Economics"
+    - "R"
 
   proficient:
     - "AWS SageMaker"
@@ -93,7 +190,6 @@ skills:
     - "TensorFlow"
     - "XGBoost"
     - "scikit-learn"
-    - "R"
     - "SQL"
     - "Power BI"
     - "Tableau"
@@ -105,54 +201,50 @@ skills:
 
   domain_expertise:
     - "Healthcare AI"
+    - "Global Health"
     - "Reproductive Health"
+    - "RMNCH / Maternal & Child Health"
     - "Population Health"
     - "Epidemiology"
+    - "Health Systems Strengthening"
+    - "Digital Health"
+    - "Real-World Evidence"
+    - "Outcomes Research"
     - "FDA Drug-Label Intelligence"
     - "MLOps"
     - "LLMOps"
-    - "Statistical Modeling"
     - "Bias Detection"
     - "Research Leadership"
+    - "Executive Leadership"
     - "AI Safety & Responsible AI"
     - "Enterprise AI Guardrails"
     - "LLM Red-Teaming & Adversarial Testing"
+    - "Monitoring, Evaluation & Learning (MEL)"
+    - "Program Impact Evaluation"
 
+# ── Search preferences ────────────────────────────────────────────────────────
 preferences:
   remote: true
   hybrid_ok: true
   onsite_ok: false
-  min_score_apply: 80
-  min_score_maybe: 60
+  relocation_states:
+    - "Washington"
+    - "Oregon"
+
+  # Track A (health executive) — lower threshold to surface foundation/NGO roles
+  min_score_apply_track_a: 75
+  min_score_maybe_track_a: 55
+
+  # Track B (AI engineering) — standard threshold
+  min_score_apply_track_b: 80
+  min_score_maybe_track_b: 60
+
   max_job_age_days: 14
   freshness_bonus_24h: 5
   freshness_bonus_48h: 3
 
-  priority_companies:
-    - "Anthropic"
-    - "OpenAI"
-    - "Google DeepMind"
-    - "Cohere"
-    - "Mistral"
-    - "Meta AI"
-    - "Microsoft"
-    - "AWS"
-    - "Nvidia"
-    - "Hugging Face"
-    - "Apple"
-    - "Databricks"
-    - "Perficient"
-    - "Booz Allen Hamilton"
-    - "Deloitte"
-    - "McKinsey QuantumBlack"
-
-  priority_sectors:
-    - "AI research labs"
-    - "Health-tech"
-    - "Enterprise AI consulting"
-    - "Government / USAID contractors"
-    - "Pharma AI"
-    - "MLOps platforms"
+  # Healthcare/global health bonus applied inside analyzer.py:
+  # Track A: +12 points | Track B: +8 points
 
   exclude_companies: []
 
@@ -161,3 +253,4 @@ preferences:
     - "junior"
     - "entry level"
     - "unpaid"
+    - "associate level"
